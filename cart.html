@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewpoint" content="width=device-width", initial-scale="1.0">
+        <title>Add to cart-SmileShop</title>
+        <button style="background-color: rgb(20, 20, 24); color: white; width: 110px; height: 30px;"onclick="history.back()">Back</button>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?
+        family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            .button {
+    background-color: #ff4d4d;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+    background-color: #e60000;
+    transform: scale(1.05);
+}
+
+.button:active {
+    transform: scale(0.95);
+}
+        </style>
+    </head>
+    <body>
+        <button onclick="history.back()">Back</button>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <img src="C:\Users\pc\Desktop\smile store images\pic127.jpg" width="125px">
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Product</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="account.html">Account</a></li>
+                    <li><a href="cart.html">cart</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="small-container cart-page">
+        <table id="cartTable">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Size</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div class="total-price">
+            <table>
+                <tr>
+                    <td>Subtotal</td>
+                    <td>$0.00</td>
+                </tr>
+                <tr>
+                    <td>Tax</td>
+                    <td>$0.00</td>
+                </tr>
+                <tr>
+                    <td>Total</td>
+                    <td>$0.00</td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <button onclick="buyNow()">Buy Now</button>
+            <script>
+                function buyNow() {
+                    window.location.href = "thankyou.html";
+                }
+            </script>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download Our App</h3>
+                    <p>Download App for Android and iOS mobile phone.</p>
+                    <div class="app-logo">
+                        <img src="C:\Users\pc\Desktop\smile store images\pic123.jpg">
+                        <img src="C:\Users\pc\Desktop\smile store images\pic125.jpg">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <img src="C:\Users\pc\Desktop\smile store images\pic118.jpg">
+                    <p>Whether you're upgrading your style or finding the perfect gift, we've got you covered. Fast shipping, secure checkout, and customer care that actually cares. Welcome to your new favorite online store!</p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li>Coupons</li>
+                        <li>Blog Post</li>
+                        <li>Return Policy</li>
+                        <li>Join Affiliate</li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow us</h3>
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Twitter</li>
+                        <li>Instagram</li>
+                        <li>Youtube</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">Copyright 2025 - Easy Tutorials</p>
+        </div>
+    </div>
+
+    <script>
+        var MenuItems = document.getElementById("MenuItems");
+        MenuItems.style.maxHeight = "0px";
+
+        function menuToggle() {
+            if (MenuItems.style.maxHeight === "0px") {
+                MenuItems.style.maxHeight = "200px";
+            } else {
+                MenuItems.style.maxHeight = "0px";
+            }
+        }
+
+        function loadCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const tbody = document.querySelector('#cartTable tbody');
+            tbody.innerHTML = '';
+
+            if (cart.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6">Your cart is empty</td></tr>';
+                return;
+            }
+
+            cart.forEach((item, index) => {
+                const row = document.createElement('tr');
+
+                row.innerHTML = `
+                    <td><img src="${item.image}" alt="${item.name}" style="width: 80px;"><br>${item.name}</td>
+                    <td>${item.size}</td>
+                    <td>$${item.price.toFixed(2)}</td>
+                    <td><input type="number" value="${item.quantity}" min="1" data-index="${index}"></td>
+                    <td>$${(item.price * item.quantity).toFixed(2)}</td>
+                    <td><button class="remove-btn" data-index="${index}">Remove</button></td>
+                `;
+
+                tbody.appendChild(row);
+            });
+
+            setupQuantityInputs();
+            setupRemoveButtons();
+            updateCartPrices();
+        }
+
+        function updateCartPrices() {
+            const rows = document.querySelectorAll('#cartTable tbody tr');
+            let subtotal = 0;
+
+            rows.forEach(row => {
+                const price = parseFloat(row.children[2].innerText.replace('$', ''));
+                const quantity = parseInt(row.querySelector('input[type="number"]').value);
+                const total = price * quantity;
+                row.children[4].innerText = `$${total.toFixed(2)}`;
+                subtotal += total;
+            });
+
+            const taxRate = 35 / 915;
+            const tax = subtotal * taxRate;
+            const total = subtotal + tax;
+
+            const table = document.querySelector('.total-price table');
+            table.rows[0].cells[1].innerText = `$${subtotal.toFixed(2)}`;
+            table.rows[1].cells[1].innerText = `$${tax.toFixed(2)}`;
+            table.rows[2].cells[1].innerText = `$${total.toFixed(2)}`;
+        }
+
+        function setupRemoveButtons() {
+            const buttons = document.querySelectorAll('.remove-btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const index = button.getAttribute('data-index');
+                    removeFromCart(index);
+                });
+            });
+        }
+
+        function setupQuantityInputs() {
+            const inputs = document.querySelectorAll('#cartTable input[type="number"]');
+            inputs.forEach(input => {
+                input.addEventListener('change', () => {
+                    const index = input.getAttribute('data-index');
+                    const newQty = parseInt(input.value);
+                    if (newQty < 1) input.value = 1;
+                    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    cart[index].quantity = newQty;
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    updateCartPrices();
+                });
+            });
+        }
+
+        function removeFromCart(index) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadCart();
+        });
+    </script>
+    </body>
+    </html>

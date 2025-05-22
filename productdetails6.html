@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewpoint" content="width=device-width", initial-scale="1.0">
+        <title>All products-SmileShop</title>
+        <!------Back button----->
+    <button style="background-color: rgb(20, 20, 24); color: white; width: 110px; height: 30px;"
+    onclick="history.back()">Back</button>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?
+        family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <style>
+            .button {
+    background-color: #ff4d4d;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+    background-color: #e60000;
+    transform: scale(1.05);
+}
+
+.button:active {
+    transform: scale(0.95);
+}
+        </style>
+
+    </head>
+    <body>
+
+        
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <img src="C:\Users\pc\Desktop\smile store images\pic127.jpg" width="125px">
+                </div>
+                <nav>
+                    <ul id="MenuItems">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="product.html">Product</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="account.html">Account</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                    </ul>
+                </nav>
+                
+            </div>
+        </div>
+        <!---------single product details--------->
+        <div class="small-container single-product">
+            <div class="row">
+                <div class="col-2">
+                    <img src="C:\Users\pc\Desktop\smile store images\pic99.jpg" width="100%" id="ProductImg">
+                    <div class="small-img-row">
+                        <div class="small-img-col">
+                            <img src="C:\Users\pc\Desktop\smile store images\pic130.jpg" width="100%" class="small-img">
+                        </div>
+                        <div class="small-img-col">
+                            <img src="C:\Users\pc\Desktop\smile store images\pic99.jpg" width="100%" class="small-img">
+                        </div>
+                        <div class="small-img-col">
+                            <img src="C:\Users\pc\Desktop\smile store images\pic100.jpg" width="100%" class="small-img">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <p>Footwear</p>
+                    <h1>Shoes</h1>
+                    <h4>$549.00</h4>
+                    <select name="" id="">
+                        <option>Select size</option>
+                        <option>Ind-4</option>
+                        <option>Ind-5</option>
+                        <option>Ind-6</option>
+                        <option>Ind-7</option>
+                        <option>ind-8</option>
+                    </select>
+                    <input type="number" value="1"><br><br>
+                    <button onclick="buyNow()">Buy Now</button>
+                    <button id="addToCartBtn">Add to Cart</button>
+                    <script>
+                        function buyNow() {
+                        window.location.href = "thankyou.html";
+                        }
+
+                        const addToCartBtn = document.getElementById('addToCartBtn');
+
+    addToCartBtn.addEventListener('click', () => {
+        const product = {
+            id: 'Footwear',
+            name: 'Shoes',
+            price: 549.00,
+            size: document.querySelector('select').value,
+            quantity: Number(document.querySelector('input[type="number"]').value),
+            image: document.getElementById('ProductImg').src
+        };
+
+        if (product.size === "Select size") {
+            alert("Please select a size.");
+            return;
+        }
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        const existingProductIndex = cart.findIndex(item => item.id === product.id && item.size === product.size);
+
+        if(existingProductIndex !== -1) {
+            cart[existingProductIndex].quantity += product.quantity;
+        } else {
+            cart.push(product);
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        alert("Item has been added to your cart.");
+    });
+
+                    </script>
+                    <h3>Product Details <i class="fa fa-indent"></i></h3><br>
+                    <p>Material: EVA / Rubber / PVC / PU / Foam (customize based on the material)<br>
+                        Sole: Anti-Skid Rubber Sole / Textured EVA Sole (specify)<br>
+                        Strap: PVC Strap / Fabric Strap / PU Strap / Printed Strap<br>
+                        Color: Bright Yellow / Black / Multicolor / Custom (specify)<br>
+                        Pattern: Solid / Printed / Striped / Graphic (specify)<br>
+                        Fit: Regular Fit / Comfort Fit<br>
+                        Style: Casual, Beachwear, Poolside, Home Wear<br>
+                        Occasion: Daily Wear, Travel, Vacation, Indoor/Outdoor<br>
+                        Heel Type: Flat / Slightly Raised<br>
+                        Toe Style: Open Toe<br>
+                        Care Instructions: Wipe with a damp cloth / Washable / Do not bleach</p>
+                </div>
+            </div>
+            
+        </div>   
+    <!--------footer------->
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col-1">
+                        <h3>Download Our App</h3>
+                        <p>Download App for Android and ios mobile phone.</p>
+                        <div class="app-logo">
+                            <img src="C:\Users\pc\Desktop\smile store images\pic123.jpg">
+                            <img src="C:\Users\pc\Desktop\smile store images\pic125.jpg">
+                        </div>
+                    </div>
+                    <div class="footer-col-2">
+                        <img src="C:\Users\pc\Desktop\smile store images\pic118.jpg">
+                        <p>Whether you're upgrading your style or finding the perfect gift, we've got you covered.
+                            Fast shipping, secure checkout, and customer care that actually cares.
+                            Welcome to your new favorite online store!</p>
+                    </div>
+                    <div class="footer-col-3">
+                        <h3>Useful Links</h3>
+                        <ul>
+                            <li>Coupons</li>
+                            <li>Blog Post</li>
+                            <li>Return Policy</li>
+                            <li>Join Affiliate</li>
+                        </ul>
+                    </div>
+                    <div class="footer-col-4">
+                        <h3>Follow us</h3>
+                        <ul>
+                            <li>Facebook</li>
+                            <li>Twitter</li>
+                            <li>Instgram</li>
+                            <li>Youtube</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+                <p class="copyright">Copyright 2025-Easy Tutorials</p>
+            </div>
+        </div>
+        <!-------js for toggle menu------->
+        <script>
+            var MenuItems=document.getElementById("MenuItems");
+            MenuItems.style.maxHeight="0px";
+            function menuToggle(){
+                if(MenuItems.style.maxHeight=="0px")
+                {
+                    MenuItems.style.maxHeight="200px";
+                }
+                else
+                {
+                    MenuItems.style.maxHeight="0px";
+                }
+            }
+        </script>
+        <!-----js for product gallery-------->
+        <script>
+            var productImg=document.getElementById("ProductImg");
+            var SmallImg=document.getElementsByClassName("small-img");
+            SmallImg[0].onclick=function()
+            {
+                productImg.src=SmallImg[0].src;
+            }
+            SmallImg[1].onclick=function()
+            {
+                productImg.src=SmallImg[1].src;
+            }
+            SmallImg[2].onclick=function()
+            {
+                productImg.src=SmallImg[2].src;
+            }
+            
+        </script>
+    </body>
+    </html>

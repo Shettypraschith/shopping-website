@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewpoint" content="width=device-width", initial-scale="1.0">
+        <title>Account-SmileShop</title>
+        <!------Back button----->
+    <button style="background-color: rgb(20, 20, 24); color: white; width: 110px; height: 30px;"
+    onclick="history.back()">Back</button>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?
+        family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+          .button {
+    background-color: #ff4d4d;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+    background-color: #e60000;
+    transform: scale(1.05);
+}
+
+.button:active {
+    transform: scale(0.95);
+}
+        </style>
+    </head>
+<body>  
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <img src="C:\Users\pc\Desktop\smile store images\pic127.jpg" width="125px">
+                </div>
+                <nav>
+                    <ul id="MenuItems">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="product.html">Product</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="account.html">Account</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!--------account-page------->
+        <div class="account-page">
+            <div class="container">
+                <div class="row">
+                    <div class="col-2">
+                        <img src="C:\Users\pc\Desktop\smile store images\smile2.jpg" width="100%">
+                    </div>
+                    <div class="col-2">
+                        <div class="form-container">
+                            <div class="form-btn">
+                                
+                                <span onclick="register()">Register</span>
+                                <hr id="Indicator">
+                            </div>
+<form id="LoginForm">
+  <input type="text" id="loginUsername" placeholder="Username">
+  <input type="password" id="loginPassword" placeholder="Password">
+  <button onclick="login()">Login</button>
+  <a href="">Forgot password</a>
+  </form>
+  <form id="RegForm">
+  
+  <input type="text" id="registerUsername" placeholder="Username">
+  <input type="email" id="registerEmail" placeholder="Email">
+  <input type="password" id="registerPassword" placeholder="Password">
+  <button onclick="register()">Submit</button>
+  </form>
+   <script>
+    function login() {
+      const username = document.getElementById("loginUsername").value;
+      const password = document.getElementById("loginPassword").value;
+
+      if (username && password) {
+        alert("Login successful for user: " + username);
+      } else {
+        alert("Please enter both username and password to login.");
+      }
+    }
+
+    function register() {
+      const username = document.getElementById("registerUsername").value;
+      const password = document.getElementById("registerPassword").value;
+
+      if (username && password) {
+        alert("Registration successful for user: " + username);
+      } else {
+        alert("Please fill in both fields to register.");
+      }
+    }
+  </script>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+</body>
+</html>

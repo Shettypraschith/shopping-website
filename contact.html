@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewpoint" content="width=device-width", initial-scale="1.0">
+        <title>Contact Us-SmileShop</title>
+        <!------Back button----->
+    <button style="background-color: rgb(20, 20, 24); color: white; width: 110px; height: 30px;"
+    onclick="history.back()">Back</button>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?
+        family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+          .button {
+    background-color: #ff4d4d;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+    background-color: #e60000;
+    transform: scale(1.05);
+}
+
+.button:active {
+    transform: scale(0.95);
+}
+        </style>
+    </head>
+    <body>
+
+        
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <img src="C:\Users\pc\Desktop\smile store images\pic127.jpg" width="125px">
+                </div>
+                <nav>
+                    <ul id="MenuItems">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="product.html">Product</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="account.html">Account</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+
+  <div class="contact-container">
+    <h1>Contact Us</h1>
+    
+    <p>We’d love to hear from you! Fill out the form or reach us using the details below.</p>
+    <!--------contact details----->
+    <div class="contact-box">
+      <form class="contact-form">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
+
+      <div class="contact-info">
+        <h3>Store Information</h3>
+        <p><strong>Email:</strong> smilshop123@gmail.com</p>
+        <p><strong>Phone:</strong> +91 7654321987</p>
+        <p><strong>Address:</strong> 2nd cross Rajajinagar, Bangalore</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
